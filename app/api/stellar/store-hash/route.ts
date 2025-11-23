@@ -1,18 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  Keypair,
-  Networks,
-  TransactionBuilder,
-  Operation,
-  Asset,
-  Server,
-  BASE_FEE,
-} from '@stellar/stellar-sdk';
 
 const HORIZON_URL = 'https://horizon-testnet.stellar.org';
-const server = new Server(HORIZON_URL);
 
 export async function POST(request: NextRequest) {
+  // Import Stellar SDK dynamically to avoid build-time issues
+  const {
+    Networks,
+    TransactionBuilder,
+    Operation,
+    Asset,
+    Server,
+    BASE_FEE,
+  } = await import('@stellar/stellar-sdk');
+
+  const server = new Server(HORIZON_URL);
   try {
     const { publicKey, hash } = await request.json();
 

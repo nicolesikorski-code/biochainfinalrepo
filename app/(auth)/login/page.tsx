@@ -36,13 +36,13 @@ export default function LoginPage() {
       const supabase = createClient();
 
       // Check if user exists in database
-      const { data: existingUser, error: fetchError } = await supabase
+      const { data: existingUser } = await supabase
         .from('users')
         .select('*')
         .eq('email', data.email)
-        .single();
+        .maybeSingle();
 
-      console.log('Existing user check:', existingUser, 'Error:', fetchError);
+      console.log('Existing user check:', existingUser);
 
       let userId;
       let userRole;
