@@ -15,7 +15,7 @@ export async function getWeb3Auth() {
 
   web3auth = new Web3Auth({
     clientId,
-    web3AuthNetwork: "sapphire_devnet", // Match Web3Auth project environment
+    web3AuthNetwork: "sapphire_mainnet", // Production Web3Auth network
     chainConfig: {
       chainNamespace: CHAIN_NAMESPACES.OTHER,
       chainId: "stellar:testnet",
